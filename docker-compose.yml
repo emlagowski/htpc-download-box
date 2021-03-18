@@ -2,7 +2,7 @@ version: "3.4"
 services:
   vpn:
     container_name: vpn
-    image: dperson/openvpn-client:latest
+    image: dperson/openvpn-client:rpi
     cap_add:
       - net_admin # required to modify network interfaces
     restart: unless-stopped
@@ -87,10 +87,18 @@ services:
 
   plex-server:
     container_name: plex-server
-    image: plexinc/pms-docker:latest
+    image: linuxserver/plex:bionic
+    # image: plexinc/pms-docker:latest
+    # build:
+    #   context: /home/pi/pms-docker
+    #   dockerfile: Dockerfile.armv7
     restart: unless-stopped
     environment:
+      - PUID=${PUID} # default user id, defined in .env
+      - PGID=${PGID} # default group id, defined in .env
+      - VERSION=docker
       - TZ=${TZ} # timezone, defined in .env
+      - ADVERTISE_IP=http://192.168.1.200:32400/
     network_mode: host
     volumes:
       - ${ROOT}/config/plex/db:/config # plex database
@@ -111,5 +119,5 @@ services:
       - ${ROOT}/config/bazarr:/config # config files
       - ${ROOT}/complete/movies:/movies # movies folder
       - ${ROOT}/complete/tv:/tv # tv shows folder
-    ports:
-      - 6767:6767
+#    ports:
+#      - 6767:6767
