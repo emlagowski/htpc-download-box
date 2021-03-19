@@ -5,6 +5,19 @@
 1. Turn on raspberry and connect to eth.
 1. Log into raspberry via SSH.
 1. Change password via passwd.
+1. Set static IP in dhcpcd.conf
+
+```sh
+nano /etc/dhcpcd.conf
+
+# Example static IP configuration:
+interface eth0
+static ip_address=192.168.1.200/24
+#static ip6_address=fd51:42f8:caae:d92e::ff/64
+static routers=192.168.1.1
+static domain_name_servers=192.168.1.1 8.8.8.8 1.1.1.1 8.8.4.4 103.86.96.100 103.86.99.100
+```
+
 1. Copy ssh public key to raspberry with:
 
 ```sh
@@ -55,4 +68,9 @@ Host *
 cat ~/.ssh/id_ed25519.pub
 
 git clone git@github.com:emlagowski/htpc-download-box.git
+```
+
+
+```sh
+tree -pufid /mnt/storage2tb | less
 ```
