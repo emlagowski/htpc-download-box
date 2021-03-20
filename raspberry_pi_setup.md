@@ -74,3 +74,22 @@ git clone git@github.com:emlagowski/htpc-download-box.git
 ```sh
 tree -pufid /mnt/storage2tb | less
 ```
+
+1. Fix issues
+
+missing libseccomp
+https://docs.linuxserver.io/faq#libseccomp
+
+```sh
+wget http://ftp.us.debian.org/debian/pool/main/libs/libseccomp/libseccomp2_2.4.4-1~bpo10+1_armhf.deb
+sudo dpkg -i libseccomp2_2.4.4-1~bpo10+1_armhf.deb
+```
+
+
+1. clone repo
+
+1. run docker-compsoe up
+
+1. follow readme
+
+1. enjoy
