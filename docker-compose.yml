@@ -72,7 +72,7 @@ services:
 
   radarr:
     container_name: radarr
-    image: linuxserver/radarr:latest
+    image: linuxserver/radarr:arm32v7-nightly
     restart: unless-stopped
     network_mode: host
     environment:
@@ -107,7 +107,7 @@ services:
 
   bazarr:
     container_name: bazarr
-    image: linuxserver/bazarr
+    image: linuxserver/bazarr:arm32v7-latest
     restart: unless-stopped
     network_mode: host
     environment:
